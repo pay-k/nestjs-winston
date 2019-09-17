@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  A Winston for  <a href="https://github.com/nestjs/nest">NestJS</a> has never been this easy!
+  Winston for <a href="https://github.com/nestjs/nest">NestJS</a> has never been this easy!
 </p>
 
 ## Installation
