@@ -45,5 +45,5 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'nestjs-zeebe'
+    ArtifactName: 'nestjs-winston'
     publishLocation: 'Container'
