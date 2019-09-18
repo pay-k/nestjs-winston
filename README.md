@@ -2,6 +2,7 @@
   <a href="http://nestjs.com"><img src="https://nestjs.com/img/logo_text.svg" width="320" /></a>
 </p>
 
+
 <p align="center">
   Winston for <a href="https://github.com/nestjs/nest">NestJS</a> has never been this easy!
   <br /><br />
