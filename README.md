@@ -4,7 +4,8 @@
 
 <p align="center">
   Winston for <a href="https://github.com/nestjs/nest">NestJS</a> has never been this easy!
-</p>
+  <br /><br />
+  <a href="https://dev.azure.com/payk/PayK/_build/latest?definitionId=3&branchName=master"><img src="https://dev.azure.com/payk/PayK/_apis/build/status/pay-k.nestjs-winston?branchName=master" /></a>
 
 ## Installation
 
