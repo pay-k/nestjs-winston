@@ -5,8 +5,10 @@
   "description": "Winston for Nest has never been this easy",
   "keywords": [
     "nestjs",
+    "nest",
     "winston",
-    "logger"
+    "logger",
+    "logging"
   ],
   "author": "Dan Shapir <danshapir89@gmail.com>",
   "main": "dist/index.js",
