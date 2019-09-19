@@ -1,35 +1,34 @@
-import { Provider, LoggerService } from "@nestjs/common";
-import { createLogger, LoggerOptions, Logger } from "winston";
+import { LoggerService, Provider } from '@nestjs/common';
+import { createLogger, Logger, LoggerOptions } from 'winston';
 import {
+  WINSTON_MODULE_NEST_PROVIDER,
   WINSTON_MODULE_OPTIONS,
   WINSTON_MODULE_PROVIDER,
-  WINSTON_MODULE_NEST_PROVIDER
-} from "./winston.constants";
+} from './winston.constants';
 import {
   WinstonModuleAsyncOptions,
-  WinstonModuleOptions
-} from "./winston.interfaces";
+  WinstonModuleOptions,
+} from './winston.interfaces';
 
 class WinstonLogger implements LoggerService {
   constructor(private readonly logger: Logger) {}
 
-  log(message: any, context?: string) {
+  public log(message: any, context?: string) {
     return this.logger.info(message, { context });
   }
-  error(message: any, trace?: string, context?: string) {
+  public error(message: any, trace?: string, context?: string) {
     return this.logger.error(message, { trace, context });
   }
-  warn(message: any, context?: string) {
+  public warn(message: any, context?: string) {
     return this.logger.warn(message, { context });
   }
-  debug?(message: any, context?: string) {
+  public debug?(message: any, context?: string) {
     return this.logger.debug(message, { context });
   }
-  verbose?(message: any, context?: string) {
+  public verbose?(message: any, context?: string) {
     return this.logger.verbose(message, { context });
   }
 }
-
 
 export function createWinstonProviders(
   loggerOpts: WinstonModuleOptions): Provider[] {
@@ -44,7 +43,7 @@ export function createWinstonProviders(
         return new WinstonLogger(logger);
       },
       inject: [WINSTON_MODULE_PROVIDER]
-    }
+    },
   ];
 }
 
@@ -67,6 +66,6 @@ export function createWinstonAsyncProviders(
         return new WinstonLogger(logger);
       },
       inject: [WINSTON_MODULE_PROVIDER]
-    }
+    },
   ];
 }
