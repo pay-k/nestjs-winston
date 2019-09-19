@@ -108,7 +108,7 @@ WinstonModule.forRoot({
   transports: [
 
     new winston.transports.Console({
-      format: winston.format.combine(winston.format.timestamp(), winston.format.colorize({ all: true }), winstonConsoleFormat())
+      format: winston.format.combine(winston.format.timestamp(), winston.format.colorize({ all: true }), winstonConsoleFormat
     })
   ]
 })

@@ -1,4 +1,4 @@
-import * as colors from 'colors/safe';
+import colors = require('colors/safe');
 import { format } from 'winston';
 
 export const winstonConsoleFormat = format.printf(({ context, level, timestamp, message, ...meta }) => {
