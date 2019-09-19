@@ -35,14 +35,14 @@ export function createWinstonProviders(
   return [
     {
       provide: WINSTON_MODULE_PROVIDER,
-      useFactory: () => createLogger(loggerOpts)
+      useFactory: () => createLogger(loggerOpts),
     },
     {
       provide: WINSTON_MODULE_NEST_PROVIDER,
       useFactory: (logger: Logger) => {
         return new WinstonLogger(logger);
       },
-      inject: [WINSTON_MODULE_PROVIDER]
+      inject: [WINSTON_MODULE_PROVIDER],
     },
   ];
 }
@@ -53,19 +53,19 @@ export function createWinstonAsyncProviders(
     {
       provide: WINSTON_MODULE_OPTIONS,
       useFactory: options.useFactory,
-      inject: options.inject || []
+      inject: options.inject || [],
     },
     {
       provide: WINSTON_MODULE_PROVIDER,
       useFactory: (loggerOpts: LoggerOptions) => createLogger(loggerOpts),
-      inject: [WINSTON_MODULE_OPTIONS]
+      inject: [WINSTON_MODULE_OPTIONS],
     },
     {
       provide: WINSTON_MODULE_NEST_PROVIDER,
       useFactory: (logger: Logger) => {
         return new WinstonLogger(logger);
       },
-      inject: [WINSTON_MODULE_PROVIDER]
+      inject: [WINSTON_MODULE_PROVIDER],
     },
   ];
 }
