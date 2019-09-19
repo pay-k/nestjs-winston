@@ -96,6 +96,21 @@ export class CatsController {
   constructor(@Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger) { }
 }
 ```
+## Nest Winston Formatter
+To allow a better visibility a unique formatter is provided
+```typescript
+import { winstonConsoleFormat } from '@payk/nestjs-winston';
 
+WinstonModule.forRoot({
+  level: 'info',
+  //format: winston.format.json(),
+  defaultMeta: { service: 'user-service' },
+  transports: [
 
+    new winston.transports.Console({
+      format: winston.format.combine(winston.format.timestamp(), winston.format.colorize({ all: true }), winstonConsoleFormat())
+    })
+  ]
+})
+```
 
