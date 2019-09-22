@@ -13,6 +13,12 @@
 npm install --save @payk/nestjs-winston
 ```
 
+## What does it do?
+This package not only wraps winston into a Nest Module like other packages, it also creates a <b>Nest LoggerService</b>, so you can keep using the default NestJS logger, which enjoying winston.
+But that's not all, it also takes those great things from the NestJS Logger. It adds the context into the winston meta (so it can later be search and indexed in your <b>ELK/Datadog</b>).
+
+Another great feature is the <b>winston formatter</b> add to the class that in local mode allows easy and readable logs to the console.
+
 ## Quick Start
 
 Import `WinstonModule` and use the `forRoot()` method to configure it. This method accepts the same options object as [`createLogger()`](https://github.com/winstonjs/winston#usage) function from the winston package:
@@ -87,13 +93,22 @@ export class ClassName {
 A provider will then be exposed to allow easy injection.
 
 ```typescript
-import { Controller, Inject } from '@nestjs/common';
-import { Logger } from 'winston';
+import { Controller, Inject, Logger } from '@nestjs/common';
 import { WINSTON_MODULE_PROVIDER } from '@payk/nestjs-winston';
 
 @Controller('cats')
 export class CatsController {
   constructor(@Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger) { }
+}
+
+@Get()
+public getCats() {
+  // To send metadata we need to pass the message inside an object
+  // since the nestjs logger doesn't support meta by default
+  this.logger.log({ message: 'Your message here', { meta: 'data', goes: 'here'}});
+  
+  // If we just want a message, it can be passed as it
+  this.logger.log('Only a message if no metadata is needed')
 }
 ```
 ## Nest Winston Formatter
@@ -108,7 +123,11 @@ WinstonModule.forRoot({
   transports: [
 
     new winston.transports.Console({
-      format: winston.format.combine(winston.format.timestamp(), winston.format.colorize({ all: true }), winstonConsoleFormat
+      format: winston.format.combine(
+                winston.format.timestamp(),
+                winston.format.colorize({ all: true }),
+                winstonConsoleFormat
+              )
     })
   ]
 })
