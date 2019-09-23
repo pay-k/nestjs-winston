@@ -105,7 +105,8 @@ export class CatsController {
 public getCats() {
   // To send metadata we need to pass the message inside an object
   // since the nestjs logger doesn't support meta by default
-  this.logger.log({ message: 'Your message here', { meta: 'data', goes: 'here'}});
+  let moreMeta =  3333;
+  this.logger.log({ message: 'Your message here', { meta: 'data', goes: 'here'}, moreMeta});
   
   // If we just want a message, it can be passed as it
   this.logger.log('Only a message if no metadata is needed')

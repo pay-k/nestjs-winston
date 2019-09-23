@@ -14,19 +14,26 @@ class WinstonLogger implements LoggerService {
   constructor(private readonly logger: Logger) {}
 
   public log(message: any, context?: string) {
-    return this.logger.info(message, { context });
+    return this.logger.info({ ...this.prepareMessage(message), context });
   }
   public error(message: any, trace?: string, context?: string) {
-    return this.logger.error(message, { trace, context });
+    return this.logger.error({...this.prepareMessage(message), trace, context });
   }
   public warn(message: any, context?: string) {
-    return this.logger.warn(message, { context });
+    return this.logger.warn({...this.prepareMessage(message), context });
   }
   public debug?(message: any, context?: string) {
-    return this.logger.debug(message, { context });
+    return this.logger.debug({...this.prepareMessage(message), context });
   }
   public verbose?(message: any, context?: string) {
-    return this.logger.verbose(message, { context });
+    return this.logger.verbose({...this.prepareMessage(message), context });
+  }
+
+  private prepareMessage(message: any): object {
+    if (!(message instanceof Object)) {
+      message = { message };
+    }
+    return message;
   }
 }
 
