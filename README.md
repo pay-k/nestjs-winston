@@ -1,3 +1,6 @@
+<h1 align="center">
+nestjs-winston
+</h1>
 <p align="center">
   <a href="http://nestjs.com"><img src="https://nestjs.com/img/logo_text.svg" width="320" /></a>
 </p>
