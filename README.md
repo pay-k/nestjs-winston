@@ -85,36 +85,13 @@ bootstrap();
 
 Use:
 ```typescript
+import { WinstonLogger } from '@payk/nestjs-winston';
+
 export class ClassName {
-  private readonly logger = new Logger(ClassName.name);
+  private readonly logger = new WinstonLogger(ClassName.name);
 }
 ```
 
-## Injection usage
-
-`WinstonModule` is a global module, it will be available in all you feature modules.
-A provider will then be exposed to allow easy injection.
-
-```typescript
-import { Controller, Inject, Logger } from '@nestjs/common';
-import { WINSTON_MODULE_PROVIDER } from '@payk/nestjs-winston';
-
-@Controller('cats')
-export class CatsController {
-  constructor(@Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger) { }
-}
-
-@Get()
-public getCats() {
-  // To send metadata we need to pass the message inside an object
-  // since the nestjs logger doesn't support meta by default
-  let moreMeta =  3333;
-  this.logger.log({ message: 'Your message here', { meta: 'data', goes: 'here'}, moreMeta});
-  
-  // If we just want a message, it can be passed as it
-  this.logger.log('Only a message if no metadata is needed')
-}
-```
 ## Nest Winston Formatter
 To allow a better visibility a unique formatter is provided
 ```typescript
