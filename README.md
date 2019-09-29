@@ -28,7 +28,7 @@ Import `WinstonModule` and use the `forRoot()` method to configure it. This meth
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { WinstonModule } from 'nest-winston';
+import { WinstonModule } from '@payk/nestjs-winston';
 import * as winston from 'winston';
 
 @Module({
@@ -50,7 +50,7 @@ Maybe you need to asynchronously pass your module options, for example when you 
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { WinstonModule } from 'nest-winston';
+import { WinstonModule } from '@payk/nestjs-winston';
 import * as winston from 'winston';
 
 @Module({
