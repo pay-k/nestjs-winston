@@ -56,6 +56,10 @@ stages:
           vmImage: 'ubuntu-latest'
 
         steps:
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            buildType: 'current'
+            targetPath: '$(Build.ArtifactStagingDirectory)'
         - task: Npm@1
           displayName: 'npm publish'
           inputs:
