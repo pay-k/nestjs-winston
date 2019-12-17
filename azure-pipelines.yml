@@ -25,6 +25,15 @@ stages:
             npm run build
           displayName: 'npm install and build'
 
+        - script: |
+            npm run test-juint
+          displayName: 'npm test'
+        - task: PublishTestResults@2
+          condition: succeededOrFailed()
+          inputs:
+            testResultsFormat: 'JUnit'
+            testResultsFiles: '**/test-results.xml'
+
         - task: CopyFiles@2
           inputs:
             SourceFolder: '$(Build.SourcesDirectory)'
@@ -40,15 +49,17 @@ stages:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: 'nestjs-winston'
             publishLocation: 'Container'
-      - job: Test
+  - stage: Deploy
+    jobs:
+      - job: Deploy
         pool:
           vmImage: 'ubuntu-latest'
+
         steps:
-        - script: |
-            npm run test-juint
-          displayName: 'npm test'
-        - task: PublishTestResults@2
-          condition: succeededOrFailed()
+        - task: Npm@1
+          displayName: 'npm publish'
           inputs:
-            testResultsFormat: 'JUnit'
-            testResultsFiles: '**/test-results.xml'
+            command: publish
+            workingDir: '$(System.DefaultWorkingDirectory)/pay-k.nestjs-winston/nestjs-winston'
+            verbose: false
+            publishEndpoint: NPMJS
