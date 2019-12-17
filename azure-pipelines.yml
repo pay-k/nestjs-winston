@@ -40,8 +40,6 @@ stages:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: 'nestjs-winston'
             publishLocation: 'Container'
-  - stage: Test
-    jobs:
       - job: Test
         pool:
           vmImage: 'ubuntu-latest'
