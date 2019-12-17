@@ -56,10 +56,14 @@ stages:
           vmImage: 'ubuntu-latest'
 
         steps:
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            buildType: 'current'
+            targetPath: '$(Pipeline.Workspace)'
         - task: Npm@1
           displayName: 'npm publish'
           inputs:
             command: publish
-            workingDir: '$(Build.ArtifactStagingDirectory)/pay-k.nestjs-winston/nestjs-winston'
+            workingDir: '$(Pipeline.Workspace)'
             verbose: false
             publishEndpoint: NPMJS
