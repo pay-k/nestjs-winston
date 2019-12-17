@@ -64,6 +64,6 @@ stages:
           displayName: 'npm publish'
           inputs:
             command: publish
-            workingDir: '$(Pipeline.Workspace)/home/vsts/work/1/nestjs-winston/'
+            workingDir: '$(Pipeline.Workspace)/nestjs-winston/'
             verbose: false
             publishEndpoint: NPMJS
