@@ -60,6 +60,6 @@ stages:
           displayName: 'npm publish'
           inputs:
             command: publish
-            workingDir: '$(System.DefaultWorkingDirectory)/pay-k.nestjs-winston/nestjs-winston'
+            workingDir: '$(Build.ArtifactStagingDirectory)/pay-k.nestjs-winston/nestjs-winston'
             verbose: false
             publishEndpoint: NPMJS
